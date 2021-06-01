@@ -128,6 +128,10 @@ def login_page():
 
 @app.route ('/login',methods = ["POST","GET"])
 def login():
+	cluster = MongoClient("mongodb+srv://dinesh:123dinesh@cluster0.vkomn.mongodb.net/userdb?retryWrites=true&w=majority")
+	db = cluster["userdb"]
+	collection = db["userinfo"]
+	print("connected")
 	if ("user_id") in session:
 		user = session["user_id"]
 		return redirect(url_for('loggedinpage',user = user))
